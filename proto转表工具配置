@@ -1,0 +1,37 @@
+写于2014年12月14日  下午4.55
+
+windows平台proto转表工具配置
+
+最近项目结构体用的是ptoto，手头有3个平台的proto转表工具,转成pbd。
+windows需要环境配置，在此记录下：
+
+（1）首先运行tran.bat，提示未找到python27，官网下载一个2.7.9版的安装。
+https://www.python.org/downloads/release/python-279/
+
+（2）配置环境变量，在系统属性---高级---用户环境变量中添加c:\Python27
+运行后报错 file "trans.py",line 5, in <module>
+importError:no module named xlrd
+
+在官网下载xlrd 0.9.3
+https://pypi.python.org/pypi/xlrd/
+cd到解压目录，执行sudo python setup.py install  配置环境变量
+成功
+
+重新运行trans.bat,提示没有google的运行库
+下载goole 1.05
+https://pypi.python.org/pypi/google/1.05
+cd到解压目录，执行python setup.py install 配置环境变量
+成功
+
+重新运行trans.bat,提示importError: no mudule named protobuf
+下载protobuf 2.6.1
+https://pypi.python.org/pypi/protobuf/2.6.1 配置环境变量
+cd到解压目录 执行python setup.py install 
+提示socket.timeout:timed out
+
+我尝试运行 ez_setup.py 不行 我估计是网络问题
+于是我在自己的笔记本上运行，在目录dep里，运行setup.bat
+搞定
+
+
+
