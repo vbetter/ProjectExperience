@@ -1,0 +1,33 @@
+/********************************************
+-	    File Name:
+-	  Description: 
+-	 	   Author: lijing,<979477187@qq.com>
+-     Create Date: 2014.12.20  21:37
+-Revision History: --
+********************************************/
+
+需要工具:aapt , apktool , apktool.jar
+开发环境:mac
+
+编译apk ,反编译apk,签名
+
+1.新建一个android工程,通过eclipse 打包出apk,并完成签名.【安装成功】
+2.反编译apk
+	:./apktool d TEST5.apk 
+3.在包内随意添加一个文件,重新编译apk
+	:./apktool b TEST5
+	在该目录dist下会生成新的apk,该包未签名
+4.生成签名文件
+
+-alias 后跟的是别名这里是 lijing.keystore
+-keyalg 是加密方式这里是 RSA
+-validity 是有效期 这里是 20000
+-keystore 就是要生成的keystore的名称 这里是 lijing.keystore
+
+keytool -genkey -alias lijing.keystore -keyalg RSA -validity 1000000 -keystore lijing.keystore 
+【签名生成】
+
+5.给apk签名
+jarsigner -verbose -keystore lijing.keystore -signedjar TEST5.apk TEST5.apk lijing.keystore -digestalg SHA1 -sigalg MD5withRSA 
+【成功】
+

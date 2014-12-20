@@ -1,0 +1,27 @@
+/********************************************
+-       File Name: Mac软件清单
+-     Description: mac下开发必备软件
+-          Author: lijing,<979477187@qq.com>
+-     Create Date: 2014.12.17  17:55
+-Revision History: --
+********************************************/
+
+Mac软件清单
+Cornerstone:svn版本管理软件。
+MacVim:文本工具
+Xmind:思维导图工具
+MacAppBox:破解mac软件下载工具
+Xcode:编程工具
+Unity:游戏引擎
+Apptool:apk反编译工具
+Dash:代码碎片管理工具
+GitHub:代码托管
+Pixelmator:绘图软件
+Eclipse:编程软件
+
+环境软件:
+protobuf
+protobuf-net
+apche-ant
+android-ndk
+adt-bundle mac

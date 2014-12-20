@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/umc_login_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/umc_login_head"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="#43b2f4"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/umc_back_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/umc_back_selector" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UMC登录"
+            android:textColor="#ffffff"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/umc_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dip"
+                android:gravity="center_vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/umc_logo_big" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dip"
+                        android:text="UMC"
+                        android:textColor="#333333"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="center"
+                    android:src="@drawable/umc_auth_icon" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/umc_app" />
+
+                    <TextView
+                        android:id="@+id/umc_app_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dip"
+                        android:text="UMCSDK-OPen-Demo"
+                        android:singleLine="true"
+						android:ellipsize="end"
+						android:maxEms="20"
+                        android:textColor="#333333"
+                        android:textSize="17sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/umc_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:gravity="center_vertical" >
+
+            <ImageView
+                android:id="@+id/umc_logo_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dip"
+                android:src="@drawable/umc_logo_small" />
+            
+            <TextView
+                android:id="@+id/umc_account_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/umc_logo_small"
+                android:layout_marginLeft="5dip"
+                android:text="13589654857"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/umc_auth_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dip"
+                android:clickable="true"
+                android:text="切换账号"
+                android:textColor="#43b2f4"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/umc_line" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/umc_login_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dip"
+        android:layout_marginRight="22dip"
+        android:layout_marginTop="25dip"
+        android:background="@drawable/umc_login_bg_selector"
+        android:gravity="center_vertical|center_horizontal"
+        android:clickable="true" >
+
+        <TextView
+            android:id="@+id/umc_login_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在自动登录"
+            android:textColor="#ffffff"
+            android:textSize="19sp" />
+
+        <mail139.umcsdk.auth.WaitingBar
+            android:id="@+id/umc_waitbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </mail139.umcsdk.auth.WaitingBar>
+    </LinearLayout>
+
+</LinearLayout>

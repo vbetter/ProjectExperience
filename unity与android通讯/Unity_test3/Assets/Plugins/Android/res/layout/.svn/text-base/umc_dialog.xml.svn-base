@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#cbcccb"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/umc_mobile_logo" />
+
+        <LinearLayout
+            android:id="@+id/umc_number_textinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dip"
+            android:gravity="center_vertical|center_horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="你正在使用本机号码自动登录"
+                android:textColor="#666666"
+                android:textSize="18sp" />
+
+            <mail139.umcsdk.auth.WaitingBar
+                android:id="@+id/umc_waitbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </mail139.umcsdk.auth.WaitingBar>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

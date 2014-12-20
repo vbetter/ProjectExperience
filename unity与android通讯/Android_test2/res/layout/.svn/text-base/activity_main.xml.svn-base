@@ -1,0 +1,125 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    <TextView
+        android:id="@+id/txt_lable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="@string/umc_lable" />
+
+    <Button
+        android:id="@+id/auto_login"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_lable"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:text="@string/auto_login" />
+
+    <Button
+        android:id="@+id/wap_login1"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/auto_login"
+        android:layout_centerHorizontal="true"
+        android:text="@string/none_login1" />
+    
+    <Button
+        android:id="@+id/wap_login2"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wap_login1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/none_login2" />
+
+    <Button
+        android:id="@+id/sms_login"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wap_login2"
+        android:layout_centerHorizontal="true"
+        android:text="@string/layout_login" />
+    
+    <Button
+        android:id="@+id/outh_login"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sms_login"
+        android:layout_centerHorizontal="true"
+        android:text="@string/outh_login" />
+    
+
+    <Button
+        android:id="@+id/logout_Authorization"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/outh_login"
+        android:layout_centerHorizontal="true"
+        android:text="@string/logout_authorization" />
+    
+    <Button
+        android:id="@+id/get_user_info"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/outh_login"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:text="@string/umc_get_user_info" />
+    
+    <Button
+        android:id="@+id/get_logined_info"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/get_user_info"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:text="@string/get_login_user_info" />
+    
+    <Button
+        android:id="@+id/password_login"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/get_logined_info"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:text="@string/password_login" />
+    
+    
+    <Button
+        android:id="@+id/user_Authorization"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password_login"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:text="@string/user_authorization" />
+    
+    <Button
+        android:id="@+id/freelogin"
+        android:layout_width="240dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logout_Authorization"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:text="@string/free_login" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logout_Authorization" >
+
+        <TextView
+            android:id="@+id/text_result"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+</RelativeLayout>

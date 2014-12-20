@@ -1,0 +1,152 @@
+/********************************************
+-	    File Name:unity与android通讯
+-	  Description: 
+-	 	   Author: lijing,<979477187@qq.com>
+-     Create Date: 2014.18.14  15:16
+-Revision History: --
+********************************************
+
+最终目标:新建android工程,导入渠道,编写相互通讯代码,打包jar供unity调用。
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+测试1---（未完成）新建android工程,并导入unity中，完成相互通讯。
+(1)用eclipse新建一个android工程
+发现多了一个appcompat_v7 这是新版本google自己的一个兼容包
+但是项目文件夹会有红色的错误标记
+解决办法是:
+build all ---appcompat_v7
+Clean 项目工程
+
+(2)导入unity class.jar  该包在/unity/显示包内容/Contents/playbackEngines/AndroidPlayer/development/bin/classes.jar
+   在eclipse中,右键项目build path--addExternalArchives 添加classes.jar
+
+(3)
+
+
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+测试2---(已完成)unity导出android,然后只在android工程中作业。
+(1)在unity中添加测试方法
+	void OnGUI()
+	{
+		if(GUILayout.Button("OPEN Activity01",GUILayout.Height(100)))
+		{
+			//注解1
+			using (AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+			{
+				using( AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity"))
+				{
+					//调用Android插件中UnityTestActivity中StartActivity0方法，stringToEdit表示它的参数
+					jo.Call("add",1);
+				}
+			}
+		}
+	}
+
+	public void receiveMessage(string str){
+		Debug.Log(str);
+	}
+
+(2)用unity 导出android工程，用eclipse打开，在UnityPlayerNativeActivity里添加如下方法
+	public void add(int a){
+		UnityPlayer.UnitySendMessage("Main Camera","receiveMessage","123");
+	}
+
+(3)用eclipse打包出apk，Logcat成功打印出123,表示unity和android相互通讯成功。
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+测试3---(已完成)在测试2的基础上,导出jar,放入unity中调用。
+(1)cd到/bin/classes目录下
+输入jar -cvf classes.jar *
+打包jar
+
+(2)把android工程文件到unity工程下
+AndroidManifest.xml复制到Plugins/Android
+classes.jar 复制到Plugins/Android/bin
+res文件夹 复制到 Plugins/Android/res
+
+(3)通讯成功,成功打印123
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+测试4---(已完成)在测试2的基础上,导入第三方sdk包,并成功调用包内方法。
+
+报错:
+[2014-12-18 21:32:53 - Dex Loader] Unable to execute dex: Multiple dex files define Lcom/glacier/Test/BuildConfig;
+[2014-12-18 21:32:53 - UnityPlayerNativeActivity] Conversion to Dalvik format failed: Unable to execute dex: Multiple dex files define Lcom/glacier/Test/BuildConfig;
+
+重新来一遍
+
+(1)新建android工程
+运行成功,输出helloworld
+(2)导入sdk包,运行,成功。
+(3)导入layout和drawable-xhdpi
+layout里的activity_main报错
+用demo中的res完全替换它 该错误解除 删除MainActivity.java中错误代码后  成功运行
+(3)编写调用sdk的代码  测试成功 
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+测试5---()在测试4的基础上打包,导入unity,并测试成功
+
+(1)导入unity包,未报错,运行,提示进程有问题,但未崩溃.
+(2)在unity中导入包后,崩溃
+打印错误日志:
+12-18 23:35:30.546: E/AndroidRuntime(10390): FATAL EXCEPTION: main
+12-18 23:35:30.546: E/AndroidRuntime(10390): java.lang.Error: FATAL EXCEPTION [main]
+12-18 23:35:30.546: E/AndroidRuntime(10390): Unity version     : 4.6.0f3
+12-18 23:35:30.546: E/AndroidRuntime(10390): Device model      : samsung SM-G3502
+12-18 23:35:30.546: E/AndroidRuntime(10390): Device fingerprint: samsung/cs023gzn/cs023g:4.2.2/JDQ39/G3502ZNUANG1:user/release-keys
+12-18 23:35:30.546: E/AndroidRuntime(10390): Caused by: java.lang.NoClassDefFoundError: mail139.umcsdk.auth.AuthnHelper
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at com.yidong.ydsdk.MainActivity.onCreate(MainActivity.java:52)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at android.app.Activity.performCreate(Activity.java:5326)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1097)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2213)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2304)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at android.app.ActivityThread.access$700(ActivityThread.java:152)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1284)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at android.os.Looper.loop(Looper.java:176)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at android.app.ActivityThread.main(ActivityThread.java:5299)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at java.lang.reflect.Method.invokeNative(Native Method)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at java.lang.reflect.Method.invoke(Method.java:511)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:1102)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:869)
+12-18 23:35:30.546: E/AndroidRuntime(10390): 	at dalvik.system.NativeStart.main(Native Method)
+
+(3)尝试从unity导出android,再把渠道包加入进去
+[1]导出android项目能运行
+[2]添加渠道包 能运行
+[3]添加res,修改androidManifest 能运行
+[4]加入调用android的代码,但是失败,直接在android里初始化sdk并登陆,成功。
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+测试6---()在测试1的基础导入渠道包,并成功调用。
+(1)失败,app在android和unity中崩溃,但是书中demo能跑起来。
+(2)尝试在eclipse中跑书中例子 Helloworld, 报错:android library projects cannot be launched
+解决办法:http://jingyan.baidu.com/article/636f38bb3df187d6b9461048.html
+(3)继续新建android工程,能正常跑起来。
+(4)成功
+详见Android_tesi6
+
+public void layout(String str) {
+
+		mHandler.post(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				mHelper.getAccessTokenOnDisplay(Constant.APP_ID, Constant.APP_KEY,mListener);
+			}
+		});
+	}
